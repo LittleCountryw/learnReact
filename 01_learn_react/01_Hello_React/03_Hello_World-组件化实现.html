@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <div id="app"></div>
+
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super()
+          // this.message = 'Hello world'
+          this.state = {
+            message: 'Hello world',
+          }
+        }
+        changeContent() {
+          console.log(this)
+          // 不绑定的情况,此处的this是undefined,为什么不是DOM元素呢?
+          // this.state.message = 'Hello React'
+          // 调用this.render也没用,因为没执行ReactDOM.render
+          // 永远不要手动调用render函数, render函数是react调用的
+          // this.render()
+          this.setState({
+            message: 'Hello React',
+          })
+        }
+        render() {
+          return (
+            <div>
+              <h2>{this.state.message}</h2>
+              <button onClick={this.changeContent.bind(this)}>改变内容</button>
+            </div>
+          )
+        }
+      }
+      ReactDOM.render(<App />, document.getElementById('app'))
+    </script>
+  </body>
+</html>

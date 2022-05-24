@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- react核心代码 -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <div id="app"></div>
+
+    <script type="text/babel">
+      let message = 'Hello world!'
+      function changeContent() {
+        message = 'Hello React'
+        console.log(message)
+        render()
+      }
+      function render() {
+        ReactDOM.render(
+          <div>
+            <h2>{message}</h2>
+            <button onClick={changeContent}>改变内容</button>
+          </div>,
+          document.getElementById('app')
+        )
+      }
+      render()
+      // 为什么视图没有发生渲染? -因为render函数只执行了一次
+      // 所以我们可以手动调用一下render函数
+    </script>
+  </body>
+</html>

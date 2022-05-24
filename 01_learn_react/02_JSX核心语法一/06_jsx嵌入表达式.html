@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <div id="app"></div>
+
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super()
+          this.state = {
+            flag: true,
+          }
+        }
+        fn() {
+          return '哈哈哈哈'
+        }
+        render() {
+          // {} 里 可以写任意js代码
+          return (
+            <div>
+              {/* 运算符 */}
+              <h2>{20 * 30}</h2>
+              {/* 三目运算符 */}
+              <h2>{this.state.flag ? 'Hello' : 'World'}</h2>
+              {/* 函数调用 */}
+              <h2>{this.fn()}</h2>
+            </div>
+          )
+        }
+      }
+      ReactDOM.render(<App />, document.getElementById('app'))
+    </script>
+  </body>
+</html>

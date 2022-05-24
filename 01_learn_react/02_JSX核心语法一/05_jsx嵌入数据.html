@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <div id="app"></div>
+
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super()
+          this.state = {
+            // 1.在{}中能正常显示的内容
+            num: 12,
+            str: 'aaaa',
+            arr: ['hello', 'world'],
+            // 2.在{}中不显示 如果想展示可以使用toString(boolean)或者String
+            test1: null,
+            test2: undefined,
+            test3: false,
+            test4: true,
+            // 3.对象不能在jsx中直接展示 会报错
+            //  Objects are not valid as a React child
+            obj: { name: 'kanae' },
+          }
+        }
+        render() {
+          return (
+            <div>
+              <h2>{this.state.num}</h2>
+              <h2>{this.state.str}</h2>
+              {/* jsx在展示数组时自动解构 */}
+              <h2>{this.state.arr}</h2>
+              <hr />
+              <h2>{this.state.test1}</h2>
+              <h2>{this.state.test2}</h2>
+              <h2>{this.state.test3}</h2>
+              <h2>{this.state.test4}</h2>
+              <hr />
+              <h2>{this.state.obj}</h2>
+            </div>
+          )
+        }
+      }
+      ReactDOM.render(<App />, document.getElementById('app'))
+    </script>
+  </body>
+</html>

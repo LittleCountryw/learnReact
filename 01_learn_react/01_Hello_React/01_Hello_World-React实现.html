@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- react核心代码 -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <!-- reactDOM react渲染在不同平台所需要的核心代码 -->
+    <!-- web端会将jsx渲染为真实DOM,显示在浏览器 -->
+    <!-- native端会将jsx渲染为原生控件 -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <!-- babel -->
+    <!-- 将jsx转为React.createElement代码 -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- crossorigin为了拿到跨域脚本的错误信息 -->
+    <div id="header">Header</div>
+    <div id="app">内容会被替换</div>
+    <div id="footer">Foorter</div>
+
+    <!-- 注意:必须要加type -->
+    <script type="text/babel">
+      const message = 'Hello world!'
+      ReactDOM.render(<h2>{message}</h2>, document.getElementById('app'))
+    </script>
+  </body>
+</html>

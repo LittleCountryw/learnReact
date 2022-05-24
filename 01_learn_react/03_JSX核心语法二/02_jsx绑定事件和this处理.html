@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <div id="app"></div>
+
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super()
+          this.state = {
+            message: '你好啊',
+            counter: 100,
+          }
+          this.btnClick = this.btnClick.bind(this)
+        }
+        render() {
+          return (
+            <div>
+              {/* 方式一:显式绑定 */}
+              <button onClick={this.btnClick.bind(this)}>显式绑定</button>
+              {/* 缺点:当有多个按钮点击都调用btnClick时,每次调用bind生成新函数,浪费性能 */}
+              <button onClick={this.btnClick.bind(this)}>显式绑定2</button>
+              <button onClick={this.btnClick.bind(this)}>显式绑定3</button>
+              {/* 改进方法:在构造函数中添加this.btnClick,但是当函数过多时,这种做法也不好 */}
+              <button onClick={this.btnClick}>显式绑定4</button>
+              <h2>{this.state.message}</h2>
+              <hr />
+              {/* 方式二: 使用箭头函数来定义函数*/}
+              {/* 缺点:传参麻烦,违背平时定义函数习惯 */}
+              <button onClick={this.increment}>+1</button>
+              {/* 方式三：推荐 传参简单 this正确*/}
+              <button
+                onClick={() => {
+                  this.decrement('hello')
+                }}
+              >
+                -1
+              </button>
+            </div>
+          )
+        }
+        btnClick() {
+          console.log(this.state.message)
+        }
+        // ES6中给对象增加属性: class fields
+        increment = () => {
+          console.log(this.state.counter)
+        }
+        decrement(arg) {
+          console.log(this.state.counter, arg)
+        }
+      }
+      ReactDOM.render(<App />, document.getElementById('app'))
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+
+    <script>
+      // jsx经过babel的转换化为React.createElement
+      // function createElement(type, config, children) config代表属性 如果children不止一项会使用arguments
+      // const message1 = <h2>Hello React</h2>
+      const message2 = React.createElement('h2', null, 'Hello React')
+
+      ReactDOM.render(message2, document.getElementById('app'))
+    </script>
+  </body>
+</html>

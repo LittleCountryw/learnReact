@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <div id="app"></div>
+
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super()
+          this.state = {
+            isLogin: false,
+          }
+        }
+        render() {
+          // if判断
+          // 三元运算符
+          // 逻辑与
+          const { isLogin } = this.state
+          let message = null
+          let btnText = null
+          if (isLogin) {
+            message = '欢迎回来'
+            btnText = '退出'
+          } else {
+            message = '请先登录'
+            btnText = '登录'
+          }
+          return (
+            <div>
+              <div>{isLogin ? '欢迎回来' : '请先登录'}</div>
+              <button onClick={() => this.changeStatus()}>{btnText}</button>
+              <h2>{isLogin && '你好啊'}</h2>
+            </div>
+          )
+        }
+        changeStatus() {
+          this.setState({
+            isLogin: !this.state.isLogin,
+          })
+        }
+      }
+      ReactDOM.render(<App />, document.getElementById('app'))
+    </script>
+  </body>
+</html>

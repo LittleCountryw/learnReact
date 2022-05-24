@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <div id="app"></div>
+
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super()
+          this.state = {
+            counter: 0,
+          }
+        }
+        addNum() {
+          // 为什么默认的this是undefined，不应该是DOM元素吗?
+          // 这是因为我们编写的button只是一个语法糖,它的本质是React的Element对象
+          // 发生点击时,其实是react帮我们调用绑定的函数,react默认绑定的this是undefined
+          this.setState({
+            counter: this.state.counter + 1,
+          })
+        }
+        subNum() {
+          this.setState({
+            counter: this.state.counter - 1,
+          })
+        }
+        render() {
+          return (
+            <div>
+              <h2>当前计数：{this.state.counter}</h2>
+              <button onClick={this.addNum.bind(this)}>+1</button>
+              <button onClick={this.subNum.bind(this)}>-1</button>
+            </div>
+          )
+        }
+      }
+      ReactDOM.render(<App />, document.getElementById('app'))
+    </script>
+  </body>
+</html>

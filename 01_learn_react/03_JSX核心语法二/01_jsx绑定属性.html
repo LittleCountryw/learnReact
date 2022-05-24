@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .active {
+        background-color: peachpuff;
+      }
+    </style>
+  </head>
+  <body>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <div id="app"></div>
+
+    <script type="text/babel">
+      function getSizeImage(imgUrl, size) {
+        return imgUrl + `?param=${size}x${size}`
+      }
+
+      class App extends React.Component {
+        constructor() {
+          super()
+          this.state = {
+            title: '标题',
+            imgUrl:
+              'http://p2.music.126.net/L8IDEWMk_6vyT0asSkPgXw==/109951163990535633.jpg',
+            active: true,
+          }
+        }
+        render() {
+          const { title, imgUrl, active } = this.state
+          return (
+            <div>
+              {/* 1.绑定普通属性 */}
+              <h2 title={title}>hhh</h2>
+              <img src={getSizeImage(imgUrl, 140)} />
+
+              {/* 2.绑定class */}
+              <div className="box title">我是div</div>
+              <div className={'box title ' + (active ? 'active' : '')}>
+                我也是div
+              </div>
+
+              <label htmlFor="input1">input</label>
+              <input type="text" id="input1" />
+
+              {/* 3.绑定style */}
+              <div style={{ color: 'red', fontSize: '50px' }}>我是div3</div>
+            </div>
+          )
+        }
+      }
+      ReactDOM.render(<App />, document.getElementById('app'))
+    </script>
+  </body>
+</html>
